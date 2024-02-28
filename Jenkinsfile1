@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
     environment {
         //be sure to replace "DOCKER_IMAGE_NAME" with your own Docker Hub username
         DOCKER_IMAGE_NAME = "abhisheksri14/train-schedule"
