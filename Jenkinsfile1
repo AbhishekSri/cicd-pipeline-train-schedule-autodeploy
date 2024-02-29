@@ -36,9 +36,6 @@ pipeline {
             }
         }
         stage('K8s Deploy') {
-            when {
-                branch 'master'
-            }
             environment { 
                 CANARY_REPLICAS = 1
             }
