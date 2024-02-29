@@ -38,7 +38,7 @@ pipeline {
         stage('K8s Deploy') {
              steps {
                 withKubeConfig {
-                  sh 'kubectl apply -f train-schedule-kube.yml'
+                  sh 'kubectl create -f train-schedule-kube.yml'
                 }
             }
         }
