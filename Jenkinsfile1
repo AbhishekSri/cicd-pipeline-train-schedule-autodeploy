@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    environment {
-       // DOCKER_IMAGE_NAME = "abhisheksri14/train-schedule"
-       // DOCKER_CRED = 'DockerCred'
-    }
     stages {
         stage("Checkout from github repo"){
             steps{
