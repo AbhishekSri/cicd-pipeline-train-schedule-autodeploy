@@ -4,7 +4,6 @@ pipeline {
         //be sure to replace "DOCKER_IMAGE_NAME" with your own Docker Hub username
         DOCKER_IMAGE_NAME = "abhisheksri14/train-schedule"
         DOCKER_CRED = 'DockerCred'
-        sh 'echo DOCKER_CRED' 
     }
     stages {
         stage("Checkout from github repo"){
@@ -23,6 +22,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+                    sh 'echo DOCKER_CRED'
                     app = docker.build(DOCKER_IMAGE_NAME)
                     app.inside {
                         sh 'echo Hello, World!'
