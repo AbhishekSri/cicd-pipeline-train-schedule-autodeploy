@@ -3,6 +3,8 @@ pipeline {
     environment {
         //be sure to replace "DOCKER_IMAGE_NAME" with your own Docker Hub username
         DOCKER_IMAGE_NAME = "abhisheksri14/train-schedule"
+        DOCKER_CRED = 'DockerCred'
+        sh 'echo DOCKER_CRED' 
     }
     stages {
         stage("Checkout from github repo"){
@@ -31,7 +33,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'DockerCred') {
+                    docker.withRegistry('https://registry.hub.docker.com', DOCKER_CRED) {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     }
