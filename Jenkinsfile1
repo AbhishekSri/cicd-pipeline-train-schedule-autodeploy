@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Push Docker Image') {
             steps {
-                withDockerRegistry([ credentialsId: "abhisheksri", url: "" ])
+                withDockerRegistry([ credentialsId: "DockerCred", url: "" ])
                 {
                 script {
                         app.push("${env.BUILD_NUMBER}")
