@@ -1,9 +1,8 @@
 pipeline {
     agent any
     environment {
-        //be sure to replace "DOCKER_IMAGE_NAME" with your own Docker Hub username
-        DOCKER_IMAGE_NAME = "abhisheksri14/train-schedule"
-        DOCKER_CRED = 'DockerCred'
+       // DOCKER_IMAGE_NAME = "abhisheksri14/train-schedule"
+       // DOCKER_CRED = 'DockerCred'
     }
     stages {
         stage("Checkout from github repo"){
@@ -22,7 +21,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    app = docker.build(DOCKER_IMAGE_NAME)
+                    app = docker.build("abhisheksri14/train-schedule")
                     app.inside {
                         sh 'echo Hello, World!'
                     }
@@ -31,7 +30,7 @@ pipeline {
         }
         stage('Push Docker Image') {
             steps {
-                withDockerRegistry([ credentialsId: "DOCKER_CRED", url: "" ])
+                withDockerRegistry([ credentialsId: "DockerCred", url: "" ])
                 {
                 script {
                         app.push("${env.BUILD_NUMBER}")
