@@ -36,11 +36,8 @@ pipeline {
             }
         }
         stage('K8s Deploy') {
-            environment { 
-                CANARY_REPLICAS = 1
-            }
-            steps {
-                sh "kubectl create -f train-schedule-kube-canary.yml"
+             steps {
+                kubernetesDeploy (configs: "train-schedule-kube.yml")
             }
         }
     }
